@@ -53,17 +53,18 @@ function decrypt(s, k) {
 }
 
 function help() {
-    console.log("Crittografia e decrittografia");
-    console.log("Usare -c per crittare, -d per decrittare.");
-    console.log("IMPORTANTE!! -> La stringa verrà sempre convertita in minuscolo prima di essere crittata/decrittata");
-    console.log("Esempio: node index.js -c ciao");
+    console.log("Crittografia e decrittografia\n");
+    console.log("-c \"string\"    Crittografia di una stringa");
+    console.log("-d \"string\"    Decrittografia di una stringa");
+    console.log("-h, --help     Schermata di aiuto\n");
+    console.log("La stringa passata da criptare/decriptare sarà sempre convertita in minuscolo prima del passaggio.");
 }
 
 const CAESAR_CIPHER = 15;
 
 let args = process.argv.slice(2); // Toglie i primi due argomenti, ovvero node e index.js
 let operazione = args[0];
-let s = args[1].toLowerCase();
+let s = args[1];
 
 if (operazione == undefined) {
     console.log("Non è stata specificata l'operazione da eseguire.\n");
@@ -78,7 +79,7 @@ if (s == undefined) {
     console.log("Non è stata specificata la stringa da utilizzare.\n");
     help();
     return;
-}
+} else s = s.toLowerCase();
 
 if (operazione == "-c")
     console.log(crypt(s, CAESAR_CIPHER));
