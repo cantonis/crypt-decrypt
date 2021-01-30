@@ -1,9 +1,11 @@
+//#region Crittazione
+
 /**
  * Crittografia Stringa -> Cesare k
  * @param {string} s La stringa da crittare
  * @param {number} k La chiave per la crittografia Cesare
  */
-function crypt(s, k) {
+function caesarCrypt(s, k) {
     const cifrario = "abcdefghijklmnopqrstuvwxyz";
     let ris = "";
 
@@ -26,11 +28,46 @@ function crypt(s, k) {
 }
 
 /**
+ * Crittografia stringa -> HEX
+ * @param {string} s La stringa da criptare
+ */
+function hexCrypt(s) {
+    var hex, i;
+
+    var ris = "";
+    for (i = 0; i < s.length; i++) {
+        hex = s.charCodeAt(i).toString(16);
+        ris += ("000" + hex).slice(-4);
+    }
+
+    return ris;
+}
+
+//#endregion
+
+//#region Decrittazione
+
+/**
+ * Decrittazione HEX -> stringa
+ * @param {string} s La stringa da decriptare
+ */
+function hexDecrypt(s) {
+    var i;
+    var hexes = s.match(/.{1,4}/g) || [];
+    var ris = "";
+    for (i = 0; i < hexes.length; i++) {
+        ris += String.fromCharCode(parseInt(hexes[i], 16));
+    }
+
+    return ris;
+}
+
+/**
  * Decrittografia Cesare k -> Stringa
  * @param {string} s La stringa da decrittare
  * @param {number} k La chiave per la decrittografia Cesare
 */
-function decrypt(s, k) {
+function caesarDecrypt(s, k) {
     const cifrario = "abcdefghijklmnopqrstuvwxyz";
     let ris = "";
 
@@ -49,6 +86,32 @@ function decrypt(s, k) {
 
     }
 
+    return ris;
+}
+
+//#endregion
+
+/**
+ * Crittografia stringa -> Cesare k -> HEX -> BIN
+ * @param {string} s La stringa da criptare
+ * @param {number} k La chiave per la crittografia Cesare
+ */
+function crypt(s, k) {
+    let ris = caesarCrypt(s, k);
+    ris = hexCrypt(s);
+    //ris = binCrypt(s);
+    return ris;
+}
+
+/**
+ * Decrittografia BIN -> HEX -> Cesare k -> stringa
+ * @param {string} s La stringa da decriptare
+ * @param {number} k La chiave per la decrittografia Cesare
+ */
+function decrypt(s, k) {
+    let ris //= binDecrypt(s);
+    ris = hexDecrypt(s);
+    ris = caesarDecrypt(s, k);
     return ris;
 }
 
