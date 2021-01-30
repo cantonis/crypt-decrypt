@@ -7,7 +7,7 @@ Si può criptare una stringa con l'argomento `-c`, mentre si può decriptare con
 Esempi:
 ```
 node index.js -c ciao                     --> Restituisce la stringa "ciao" criptata
-node index.js -d 0072007800700064         --> Restituisce la stringa "rxpd" decriptata
+node index.js -d 0072007800700064         --> Restituisce la stringa "0072007800700064" decriptata
 node index.js -c "ciao come stai"         --> Restituisce la stringa "ciao come stai" criptata
 node index.js -h                          --> Stampa una schermata di aiuto
 ```
