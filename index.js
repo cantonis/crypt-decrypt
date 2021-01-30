@@ -98,7 +98,7 @@ function caesarDecrypt(s, k) {
  */
 function crypt(s, k) {
     let ris = caesarCrypt(s, k);
-    ris = hexCrypt(s);
+    ris = hexCrypt(ris);
     //ris = binCrypt(s);
     return ris;
 }
@@ -111,7 +111,7 @@ function crypt(s, k) {
 function decrypt(s, k) {
     let ris //= binDecrypt(s);
     ris = hexDecrypt(s);
-    ris = caesarDecrypt(s, k);
+    ris = caesarDecrypt(ris, k);
     return ris;
 }
 
